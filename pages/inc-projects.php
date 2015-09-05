@@ -94,15 +94,17 @@ $queryString_propRS = sprintf("&totalRows_propRS=%d%s", $totalRows_propRS, $quer
       <?php if ($totalRows_propRS > 0) { // Show if recordset not empty ?>
           <?php do { ?>
 
-              <div class="grid_3">
-                <a href="<?php echo $row_propRS['FULL_PIC_PATH']; ?>" class="gal"><img src="<?php echo $row_propRS['SLIDE_PIC_PATH']; ?>" alt=""><span></span></a>
+              <div class="grid_3 box">
+                <a href="<?php echo $row_propRS['FULL_PIC_PATH']; ?>" class="gal">
+                    <img src="<?php echo $row_propRS['SLIDE_PIC_PATH']; ?>" alt="" style="width: 100%"><span></span>
+                    </a>
                 <div class="text1">
-                    <a href="http://livedemo00.template-help.com/wt_48035/#"><?php echo $row_propRS['BRIEF_DESCRIPTION'] ?></a>
+                    <a href="project-details.php?PROPERTY_ID=<?php echo $row_propRS['PROPERTY_ID'] ?>"><?php echo $row_propRS['BRIEF_DESCRIPTION'] ?></a>
                 </div>
-                <?php echo $row_propRS['PROPERTY_ID'] ?>
+                
                     <?php echo substr($row_propRS['DETAIL_DESCRIPTION'], 0, 200); ?> 
                     <br>
-                <a href="#" class="btn">More info</a>
+                <a href="project-details.php?PROPERTY_ID=<?php echo $row_propRS['PROPERTY_ID'] ?>" class="btn">More info</a>
               </div>
           <?php } while ($row_propRS = mysql_fetch_assoc($propRS)); ?>
       <?php } // Show if recordset not empty ?>

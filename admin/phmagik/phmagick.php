@@ -39,7 +39,7 @@ class phmagick{
     private $imageMagickPath = '';
     private $imageQuality = 80 ;
 
-    public $debug = false;
+    public $debug = true;
     private $log = array();
 
     function __construct($sourceFile='', $destinationFile=''){
@@ -175,7 +175,7 @@ class phmagick{
 
 
     public function execute($cmd){
-
+        //echo "command $cmd";
         $ret = null ;
         $out = array();
 

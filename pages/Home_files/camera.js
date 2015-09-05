@@ -1,10 +1,10 @@
-// Camera slideshow v1.3.3 - a jQuery slideshow with many effects, transitions, easy to customize, using canvas and mobile ready, based on jQuery 1.4+
+// Camera slideshow v1.3.4 - a jQuery slideshow with many effects, transitions, easy to customize, using canvas and mobile ready, based on jQuery 1.4+
 // Copyright (c) 2012 by Manuel Masia - www.pixedelic.com
 // Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 ;(function($){$.fn.camera = function(opts, callback) {
 	
 	var defaults = {
-		alignment			: 'topCenter', //topLeft, topCenter, topRight, centerLeft, center, centerRight, bottomLeft, bottomCenter, bottomRight
+		alignment			: 'center', //topLeft, topCenter, topRight, centerLeft, center, centerRight, bottomLeft, bottomCenter, bottomRight
 		
 		autoAdvance			: true,	//true, false
 		
@@ -27,7 +27,7 @@
 
 		gridDifference		: 250,	//to make the grid blocks slower than the slices, this value must be smaller than transPeriod
 		
-		height				: 'auto',	//here you can type pixels (for instance '300px'), a percentage (relative to the width of the slideshow, for instance '50%') or 'auto'
+		height				: '50%',	//here you can type pixels (for instance '300px'), a percentage (relative to the width of the slideshow, for instance '50%') or 'auto'
 		
 		imagePath			: 'images/',	//he path to the image folder (it serves for the blank.gif, when you want to display videos)
 		
@@ -45,7 +45,7 @@
 		
 		loaderStroke		: 7,	//the thickness both of the pie loader and of the bar loader. Remember: for the pie, the loader thickness must be less than a half of the pie diameter
 				
-		minHeight			: '000',	//you can also leave it blank
+		minHeight			: '200px',	//you can also leave it blank
 		
 		navigation			: true,	//true or false, to display or not the navigation buttons
 		
@@ -65,7 +65,7 @@
 		
 		pieDiameter			: 38,
 		
-		piePosition			: 'center',	//'rightTop', 'leftTop', 'leftBottom', 'rightBottom'
+		piePosition			: 'rightTop',	//'rightTop', 'leftTop', 'leftBottom', 'rightBottom'
 		
 		portrait			: false, //true, false. Select true if you don't want that your images are cropped
 		
@@ -81,7 +81,7 @@
 		
 		time				: 7000,	//milliseconds between the end of the sliding effect and the start of the nex one
 		
-		transPeriod			: 1000,	//lenght of the sliding effect in milliseconds
+		transPeriod			: 1500,	//lenght of the sliding effect in milliseconds
 		
 ////////callbacks
 
@@ -461,6 +461,7 @@
 							t.css({
 								'height' : hT*r,
 								'margin-left' : 0,
+								'margin-right' : 0,
 								'margin-top' : mTop,
 								'position' : 'absolute',
 								'visibility' : 'visible',
@@ -502,6 +503,7 @@
 							t.css({
 								'height' : h,
 								'margin-left' : mLeft,
+								'margin-right' : mLeft,
 								'margin-top' : 0,
 								'position' : 'absolute',
 								'visibility' : 'visible',
@@ -544,6 +546,7 @@
 							t.css({
 								'height' : h,
 								'margin-left' : mLeft,
+								'margin-right' : mLeft,
 								'margin-top' : 0,
 								'position' : 'absolute',
 								'visibility' : 'visible',
@@ -585,6 +588,7 @@
 							t.css({
 								'height' : hT*r,
 								'margin-left' : 0,
+								'margin-right' : 0,
 								'margin-top' : mTop,
 								'position' : 'absolute',
 								'visibility' : 'visible',
@@ -715,7 +719,33 @@
 			}
 		}
 
-		
+		if(navHover==true){
+			$(prevNav,wrap).animate({opacity:0},0);
+			$(nextNav,wrap).animate({opacity:0},0);
+			$(commands,wrap).animate({opacity:0},0);
+			if(isMobile()){
+				fakeHover.live('vmouseover',function(){
+					$(prevNav,wrap).animate({opacity:1},200);
+					$(nextNav,wrap).animate({opacity:1},200);
+					$(commands,wrap).animate({opacity:1},200);
+				});
+				fakeHover.live('vmouseout',function(){
+					$(prevNav,wrap).delay(500).animate({opacity:0},200);
+					$(nextNav,wrap).delay(500).animate({opacity:0},200);
+					$(commands,wrap).delay(500).animate({opacity:0},200);
+				});
+			} else {
+				fakeHover.hover(function(){
+					$(prevNav,wrap).animate({opacity:1},200);
+					$(nextNav,wrap).animate({opacity:1},200);
+					$(commands,wrap).animate({opacity:1},200);
+				},function(){
+					$(prevNav,wrap).animate({opacity:0},200);
+					$(nextNav,wrap).animate({opacity:0},200);
+					$(commands,wrap).animate({opacity:0},200);
+				});
+			}
+		}
 		
 	
 		$('.camera_stop',camera_thumbs_wrap).live('click',function(){

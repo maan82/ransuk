@@ -29,22 +29,17 @@
      <script>
 
        $(document).ready(function(){
-       jQuery('#camera_wrap').camera({
-            loader: false,
-            pagination: false ,
-            minHeight: '250',
-            thumbnails: false,
-            height: '40.42857142857143%',
-            caption: true,
-            navigation: true,
-            fx: 'mosaic'
-          });
-        $('.gallery1 a.gal').touchTouch();
-       
-
-            
-
-
+	       jQuery('#camera_wrap').camera({
+	            loader: false,
+	            pagination: false ,
+	            minHeight: '250',
+	            thumbnails: false,
+	            height: '40.42857142857143%',
+	            caption: true,
+	            navigation: true,
+	            fx: 'mosaic'
+	          });
+	        $('.gallery1 a.gal').touchTouch();
      }); 
 
 

@@ -15,16 +15,18 @@
 
 
 <body >
-<?php require_once('functions.php'); ?>
-
-<?php 
-
-
-
-echo normaliseText("adjas\njdklas\r\njdkla");
+<?php
+    include "phmagik/phMagick.php";
+    $p = new phMagick("../property_images/source.jpeg","/tmp/destination1.jpeg");
+    
+    $r = $p->rotate(45);
+    echo "RRR  ";
+    $a = exec('echo $PATH');
+    echo "$a";
 ?>
 
-<textarea ><?php echo normaliseText("adjas\njdklas\r\njdkla");?></textarea>
+
+<textarea ></textarea>
 
 </body>
 

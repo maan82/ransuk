@@ -65,6 +65,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form_adminaddprojec
 			   $image = new SimpleImageIM();
 			   $thumbpath = $propdir.'/'.$picture_ID.'_THUMB_'.$uid .$fileext;
 			   $image->resizeToThumbIM($uploadfile, $thumbpath);
+               
 
 			   $slidepath = $propdir.'/'.$picture_ID.'_SLIDE_'.$uid .$fileext;
 			   $image->resizeToSlideIM($uploadfile, $slidepath);
